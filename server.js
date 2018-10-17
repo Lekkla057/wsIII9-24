@@ -34,7 +34,7 @@ db.any(sql)
 .catch(function(error){
     console.log('ERROR:'+error);
 })
-db.close();
+
 
 
 });
@@ -57,7 +57,7 @@ app.get('/products', function(req, res) {
     .catch(function(error){
         console.log('ERROR:'+error);
     })
-    db.close();
+
 });
 
 
@@ -83,9 +83,7 @@ app.get('/users/:id', function(req, res) {
     })
     .catch(function(error){
         console.log('ERROR:'+error)
-    })
-    db.close();
-});
+    })});
     // Display all user
     app.get('/users', function (req, res) {
         db.any('select * from users', )
@@ -97,7 +95,7 @@ app.get('/users/:id', function(req, res) {
             .catch(function (error) {
                 console.log('ERROR:' + error);
             })
-        db.close();
+    
 });
 
 
@@ -108,10 +106,10 @@ var title =req.body.title;
 var price =req.body.price;
 var sql=`update products set title=${title},price=${price} where id=${id}`;
 //db.none
-db.any(sql, )
+db.any(sql)
             .then(function (data) {
                 console.log('DATA' + data);
-               res.send(sql);
+               res.redirect('/products');
     
             })
             .catch(function (error) {
