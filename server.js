@@ -117,3 +117,22 @@ var port = process.env.PORT || 8080;
 app.listen(port, function() {
 console.log('App is running on http://localhost:' + port);
 });
+
+app.post('/products/update', async (req, res) => {
+    var id =req.body.id;
+var title =req.body.title;
+var price =req.body.price;
+var sql=`update products set title=${title},price=${price} where id=${id}`;
+    
+    try {
+      const client = await pool.connect()
+      const result = await client.query(sql);
+      //const results = { 'results': (result) ? result.rows : null};
+      //res.render('pages/db', results );
+      res.send("test");
+      client.end();
+    } catch (err) {
+      console.error(err);
+      res.send("Error " + err);
+    }
+  })
