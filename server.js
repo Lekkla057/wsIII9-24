@@ -105,9 +105,9 @@ var id =req.body.id;
 var title =req.body.title;
 var price =req.body.price;
 var sql=`update products set title=${title},price=${price} where id=${id}`;
-db.any(sql,)
+db.any(sql)
 .then(function(data){
-    console.log('DATA:'+data);
+    //console.log('DATA:'+data);
    
 res.redirect('/products');
 })
