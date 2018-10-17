@@ -107,8 +107,8 @@ var price =req.body.price;
 var sql=`update products set title=${title},price=${price} where id=${id}`;
 //db.none
 db.any(`update products set title='test',price='tong' where id=1`, )
-            .then(function (data) {
-                console.log('DATA' + data);
+            .then(function () {
+                // console.log('DATA' + data);
                 res.send('test');
     
             })
