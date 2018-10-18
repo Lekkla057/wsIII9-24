@@ -107,7 +107,7 @@ var price =req.body.price;
 var sql=`update products set title=${title},price=${price} where id=${id}`;
 //db.none
 db.any(sql)
-       res.redirect('/product')    
+       res.redirect('/products')    
                
 
 })
