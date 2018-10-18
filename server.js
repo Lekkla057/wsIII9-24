@@ -106,18 +106,9 @@ var title =req.body.title;
 var price =req.body.price;
 var sql=`update products set title=${title},price=${price} where id=${id}`;
 //db.none
-db.any('update products set title=ttt,price=521 where id=1 ')
-            .then(function () {
-                // console.log('DATA' + data);
-                res.redirect('/products')
-    
-            })
-            .catch(function (error) {
-                console.log('ERROR:' + error);
-            })
-        
-               
-
+db.query(sql);
+    res.redirect('/products')    
+db.close();
 })
 
 
