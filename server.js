@@ -105,6 +105,7 @@ var id =req.body.id;
 var title =req.body.title;
 var price =req.body.price;
 var sql=`update products set title=${title},price=${price} where id=${id}`;
+res.send(sql)
 //db.none
 db.query(sql);
     res.redirect('/products')    
