@@ -114,7 +114,7 @@ db.close();
 })
 //delect product
 app.get('/product_delete/:pid',function (req, res) {
-    var id = req.param('id');
+    var id = req.params.pid;
     var sql = 'DELETE FROM products';
     if (id){
             sql += ' where id ='+ id;
