@@ -112,8 +112,9 @@ db.query(sql);
     res.redirect('/products')    
 db.close();
 })
-app.get('/product_delete/:pid',function (request, response) {
-    var id = request.param.id;
+//delect product
+app.get('/product_delete/:pid',function (req, res) {
+    var id = req.param('id');
     var sql = 'DELETE FROM products';
     if (id){
             sql += ' where id ='+ id;
@@ -121,7 +122,7 @@ app.get('/product_delete/:pid',function (request, response) {
     db.any(sql)
         .then(function(data){
             console.log('DATA:'+data);
-            response.render('pages/products',{products : data});
+            res.render('pages/products',{products : data});
             
         })
         .catch(function(data){
