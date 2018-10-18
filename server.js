@@ -45,10 +45,10 @@ db.any(sql)
 //Display all products
 app.get('/products', function(req, res) {
     var id = req.param('id');
-    var sql='select* from products';
+    var sql='select* from products order by id ASC';
         if(id){
             sql += ' where id ='+id+'order by id ASC';
-        
+        }
    db.any(sql)
     .then(function(data){
         console.log('DATA:'+data);
@@ -57,15 +57,7 @@ app.get('/products', function(req, res) {
     })
     .catch(function(error){
         console.log('ERROR:'+error);
-    })}else{ db.any(sql+'order by id ASC')
-        .then(function(data){
-            console.log('DATA:'+data);
-            res.render('pages/products',{products: data})
-            
-        })
-        .catch(function(error){
-            console.log('ERROR:'+error);
-        })}
+    })
 
 });
 
