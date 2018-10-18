@@ -25,7 +25,7 @@ app.get('/about', function(req, res) {
 // Display all products
 app.get('/products/:pid', function(req, res) {
 var pid = req.params.pid;
-var sql = 'select* from products where id ='+pid+'order dy id ASC';
+var sql = 'select* from products where id ='+pid+'order by id ASC';
 db.any(sql)
 .then(function(data){
     console.log('DATA:'+data);
@@ -47,8 +47,8 @@ app.get('/products', function(req, res) {
     var id = req.param('id');
     var sql='select* from products';
         if(id){
-            sql += ' where id ='+id+'order dy id ASC';
-        }
+            sql += ' where id ='+id+'order by id ASC';
+        
    db.any(sql)
     .then(function(data){
         console.log('DATA:'+data);
@@ -57,7 +57,15 @@ app.get('/products', function(req, res) {
     })
     .catch(function(error){
         console.log('ERROR:'+error);
-    })
+    })}else{ db.any(sql+'order by id ASC')
+        .then(function(data){
+            console.log('DATA:'+data);
+            res.render('pages/products',{products: data})
+            
+        })
+        .catch(function(error){
+            console.log('ERROR:'+error);
+        })}
 
 });
 
