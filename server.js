@@ -25,7 +25,7 @@ app.get('/about', function(req, res) {
 // Display all products
 app.get('/products/:pid', function(req, res) {
 var pid = req.params.pid;
-var sql = 'select* from products where id ='+pid;
+var sql = 'select* from products where id ='+pid+'order dy id ASC';
 db.any(sql)
 .then(function(data){
     console.log('DATA:'+data);
