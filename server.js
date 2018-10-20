@@ -38,7 +38,7 @@ db.any(sql)
 
 });
 
-app.get('/product/:pid', function(req, res) {
+app.get('/add/:pid', function(req, res) {
     var pid = req.params.pid;
     var sql = 'select* from products where id ='+pid+'order by id ASC';
     db.any(sql)
