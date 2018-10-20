@@ -165,8 +165,9 @@ app.post('/products/insert', function (req, res) {
             console.log('ERROR:' + error);
         })
 });
-app.get('/insert', function (req, res) {
+app.get('/product_edit', function (req, res) {
     var time = moment().format('MMMM Do YYYY, h:mm:ss a');
+    
     res.render('pages/product_edit', { time: time});
 });
 // console.log('app is running at http://localhost:8080');
