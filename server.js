@@ -4,6 +4,7 @@ var pgp = require('pg-promise')();
 var db = pgp('postgres://quxstzwnixkzml:c424aa6bac17fee1536ed4d7a61df67a66170995a252aed36c491ecd68444427@ec2-107-20-249-48.compute-1.amazonaws.com:5432/d5tcre0n3cjia1?ssl=true');
 var app = express();
 var bodyParser = require('body-parser');//บังคับ
+var moment = require('moment');
 app.use(bodyParser.json());//บังคับ
 app.use(bodyParser.urlencoded({ extended: true })); //บังคับ
 
@@ -163,6 +164,10 @@ app.post('/products/insert', function (req, res) {
         .catch(function (error) {
             console.log('ERROR:' + error);
         })
+});
+app.get('/insert', function (req, res) {
+    var time = moment().format('MMMM Do YYYY, h:mm:ss a');
+    res.render('pages/product_edit)', { time: time});
 });
 // console.log('app is running at http://localhost:8080');
 // app.listen(8080);
