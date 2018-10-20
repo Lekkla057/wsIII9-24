@@ -40,7 +40,10 @@ db.any(sql)
 
 app.get('/add/:pid', function(req, res) {
     var pid = req.params.pid;
-    var sql = 'select* from products where id ='+pid+'order by id ASC';
+    var sql='select* from products order by id ASC';
+    if(id){
+        sql += ' where id ='+id+'order by id ASC';
+    }
     db.any(sql)
     .then(function(data){
         console.log('DATA:'+data);
