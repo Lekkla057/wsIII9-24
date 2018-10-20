@@ -40,7 +40,7 @@ db.any(sql)
 
 app.get('/add', function(req, res) {
  
-        res.render('pages/product_add',{product: data[0]})
+        res.render('pages/product_add',)
         
     });
 
