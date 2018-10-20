@@ -146,6 +146,7 @@ app.post('/products/insert', function (req, res) {
     var sql = `INSERT INTO products (id,title,price)
     VALUES ('${id}', '${title}', '${price}')`;
     //db.none
+    res.send(sql)
     console.log('UPDATE:' + sql);
     db.any(sql)
         .then(function (data) {
