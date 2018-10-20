@@ -112,9 +112,15 @@ var price =req.body.price;
 var sql=`update products set title='${title}',price='${price}' where id='${id}'`;
 // res.send(sql)
 //db.none
-db.query(sql);
-    res.redirect('/products')    
-db.close();
+db.any(sql)
+        .then(function (data) {
+            console.log('DATA:' + data);
+            res.redirect('/products')
+        })
+
+        .catch(function (error) {
+            console.log('ERROR:' + error);
+        })
 })
 
 //delect product
