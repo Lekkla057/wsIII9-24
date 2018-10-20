@@ -38,41 +38,44 @@ db.any(sql)
 
 });
 
-app.get('/add/:pid', function(req, res) {
-    var pid = req.params.pid;
-    var sql = 'select* from products where id ='+pid+'order by id ASC';
-    db.any(sql)
+app.get('/add', function(req, res) {
+    var id = req.param('id');
+    var sql='select* from products order by id ASC';
+        if(id){
+            sql += ' where id ='+id+'order by id ASC';
+        }
+   db.any(sql)
     .then(function(data){
         console.log('DATA:'+data);
-        res.render('pages/product_add',{product: data[0]})
+        res.render('pages/product_add',{products: data})
         
     })
     .catch(function(error){
         console.log('ERROR:'+error);
     })
-    
-    });
+
+});
 
 
 
 //Display all products
-// app.get('/products', function(req, res) {
-//     var id = req.param('id');
-//     var sql='select* from products order by id ASC';
-//         if(id){
-//             sql += ' where id ='+id+'order by id ASC';
-//         }
-//    db.any(sql)
-//     .then(function(data){
-//         console.log('DATA:'+data);
-//         res.render('pages/products',{products: data})
+app.get('/products', function(req, res) {
+    var id = req.param('id');
+    var sql='select* from products order by id ASC';
+        if(id){
+            sql += ' where id ='+id+'order by id ASC';
+        }
+   db.any(sql)
+    .then(function(data){
+        console.log('DATA:'+data);
+        res.render('pages/products',{products: data})
         
-//     })
-//     .catch(function(error){
-//         console.log('ERROR:'+error);
-//     })
+    })
+    .catch(function(error){
+        console.log('ERROR:'+error);
+    })
 
-// });
+});
 
 
 
