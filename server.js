@@ -38,7 +38,7 @@ db.any(sql)
 
 });
 
-app.get('/add', function(req, res) {
+app.get('/add/id', function(req, res) {
     var id = req.param('id');
     var sql='select* from products order by id ASC';
         if(id){
