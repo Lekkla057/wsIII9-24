@@ -36,9 +36,22 @@ db.any(sql)
     console.log('ERROR:'+error);
 })
 
-
-
 });
+
+app.get('/product/:pid', function(req, res) {
+    var pid = req.params.pid;
+    var sql = 'select* from products where id ='+pid+'order by id ASC';
+    db.any(sql)
+    .then(function(data){
+        console.log('DATA:'+data);
+        res.render('pages/product_add',{product: data[0]})
+        
+    })
+    .catch(function(error){
+        console.log('ERROR:'+error);
+    })
+    
+    });
 
 
 
