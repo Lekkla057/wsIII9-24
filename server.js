@@ -26,11 +26,14 @@ app.get('/about', function(req, res) {
 // Display all products
 app.get('/products/:pid', function(req, res) {
 var pid = req.params.pid;
+var time = moment().format('MMMM Do YYYY, h:mm:ss a');
+   
+    
 var sql = 'select* from products where id ='+pid+'order by id ASC';
 db.any(sql)
 .then(function(data){
     console.log('DATA:'+data);
-    res.render('pages/product_edit',{product: data[0]})
+    res.render('pages/product_edit',{product: data[0],time: time})
     
 })
 .catch(function(error){
@@ -40,8 +43,8 @@ db.any(sql)
 });
 
 app.get('/add', function(req, res) {
- 
-        res.render('pages/product_add',)
+    var time = moment().format('MMMM Do YYYY, h:mm:ss a');
+        res.render('pages/product_add',{time: time})
         
     });
 
@@ -149,12 +152,13 @@ app.get('/product_delete/:pid',function (req, res) {
 app.post('/products/insert', function (req, res) {
     var id = req.body.id;
     var title = req.body.title;
+    
     var price = req.body.price;
     var sql = `INSERT INTO products (id,title,price)
     VALUES ('${id}', '${title}', '${price}')`;
     //db.none
     
-    console.log('UPDATE:' + sql);
+
     db.any(sql)
         .then(function (data) {
             console.log('DATA:' + data);
@@ -165,11 +169,8 @@ app.post('/products/insert', function (req, res) {
             console.log('ERROR:' + error);
         })
 });
-app.get('/product_edit', function (req, res) {
-    var time = moment().format('MMMM Do YYYY, h:mm:ss a');
-    
-    res.render('pages/product_edit', { time: time});
-});
+
+
 // console.log('app is running at http://localhost:8080');
 // app.listen(8080);
 var port = process.env.PORT || 8080;
