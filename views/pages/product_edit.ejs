@@ -32,16 +32,5 @@
 
 </from>
 
-<script>
-        var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
-        $('#startDate').datepicker({
-            uiLibrary: 'bootstrap4',
-            iconsLibrary: 'fontawesome',
-            minDate: today,
-            maxDate: function () {
-                return $('#endDate').val();
-            }
-        });
-      
-    </script>
+
   <% include ../partials/footer %>
