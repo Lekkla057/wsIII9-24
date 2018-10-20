@@ -43,7 +43,7 @@ db.any(sql)
 });
 
 app.get('/add', function(req, res) {
-    var time = moment().format('MMMM Do YYYY, h:mm:ss a');
+    var time = moment().format();
         res.render('pages/product_add',{time: time})
         
     });
@@ -152,10 +152,10 @@ app.get('/product_delete/:pid',function (req, res) {
 app.post('/products/insert', function (req, res) {
     var id = req.body.id;
     var title = req.body.title;
-    
+    var time = req.body.time
     var price = req.body.price;
-    var sql = `INSERT INTO products (id,title,price)
-    VALUES ('${id}', '${title}', '${price}')`;
+    var sql = `INSERT INTO products (id,title,price,created_at)
+    VALUES ('${id}', '${title}', '${price}','${time}')`;
     //db.none
     
 
