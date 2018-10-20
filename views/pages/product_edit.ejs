@@ -19,7 +19,23 @@
     <small id="helpId" class="form-text text-muted">Price</small>
     
 </div>
+<div>
+ Start Date: <input id="startDate" width="276" />
+</div>
 <button type="submit" class="btn btn-success">Save</button>
 
 </from>
+
+<script>
+        var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+        $('#startDate').datepicker({
+            uiLibrary: 'bootstrap4',
+            iconsLibrary: 'fontawesome',
+            minDate: today,
+            maxDate: function () {
+                return $('#endDate').val();
+            }
+        });
+      
+    </script>
   <% include ../partials/footer %>

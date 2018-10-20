@@ -1,7 +1,7 @@
  <% include ../partials/header %>
 <input class="form-control" id="myInput" type="text" placeholder="Search..">
 
-<a name="" id="" class="btn btn-danger" href="add" role="button">Edit</a>
+<a name="" id="" class="btn btn-success" href="add" role="button">Add</a>
 
 <table class="table">
     <thead>
@@ -19,8 +19,8 @@
             <td scope="row"><%=product.id %></td>
             <td><%=product.title %></td>
             <td><%=product.price %></td>
-            <td><a name="" id="" class="btn btn-danger" href="products/<%=product.id %>" role="button">Edit</a></td>
-            <td><a name="" id="" class="btn btn-danger" href="product_delete/<%=product.id %>" onclick="return confirm('Are you sure you want to delete?')"role="button">DELETE</a></td>
+            <td><a name="" id="" class="btn btn-warning" href="products/<%=product.id %>" role="button">Edit</a></td>
+            <td><a name="" id="" class="btn btn-danger" href="product_delete/<%=product.id %>" onclick="return confirm('Are you sure you want to delete?')"role="button">Delete</a></td>
         </tr>
       <% }); %>
     </tbody>
@@ -40,3 +40,4 @@ $(document).ready(function(){
 
 
   <% include ../partials/footer %>
+ 
