@@ -26,7 +26,7 @@ app.get('/about', function(req, res) {
 // Display all products
 app.get('/products/:pid', function(req, res) {
 var pid = req.params.pid;
-var time = moment().format('MMMM Do YYYY, h:mm:ss a');
+var time = moment().format();
    
     
 var sql = 'select* from products where id ='+pid+'order by id ASC';
@@ -113,7 +113,8 @@ app.post('/products/update',function (req, res) {
 var id =req.body.id;
 var title =req.body.title;
 var price =req.body.price;
-var sql=`update products set title='${title}',price='${price}' where id='${id}'`;
+var time =req.body.time;
+var sql=`update products set title='${title}',price='${price}',time='${time}' where id='${id}'`;
 // res.send(sql)
 //db.none
 db.any(sql)
