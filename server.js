@@ -127,7 +127,7 @@ app.get('/product_delete/:pid',function (req, res) {
     db.any(sql)
         .then(function(data){
             console.log('DATA:'+data);
-           res.redirect('/products')
+            res.render('pages/products',{products : data});
             
         })
         .catch(function(data){
@@ -144,9 +144,9 @@ app.post('/products/insert', function (req, res) {
     var title = req.body.title;
     var price = req.body.price;
     var sql = `INSERT INTO products (id,title,price)
-    VALUES ('', '${title}', '${price}')`;
+    VALUES ('${id}', '${title}', '${price}')`;
     //db.none
-    res.send(sql)
+    
     console.log('UPDATE:' + sql);
     db.any(sql)
         .then(function (data) {
