@@ -2,7 +2,7 @@
  <form action="/products/update" method="post">
 <div class="form-group">
   <label for="">ID</label>
-  <input disabled type="number"
+  <input  type="number"
     class="form-control" name="id" id="" aria-describedby="helpId" placeholder=""value="<%= product.id %>">
   <small id="helpId" class="form-text text-muted">Product ID</small>
   </div>
@@ -20,18 +20,6 @@
     
 </div>
 <button type="submit" class="btn btn-success">Save</button>
-
-
-
-
-
-
-
-
-
-
-
-
 
 </from>
   <% include ../partials/footer %>
