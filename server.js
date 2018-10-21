@@ -29,7 +29,7 @@ var pid = req.params.pid;
 var time = moment().format();
    
     
-var sql = 'select* from products where id ='+pid+'order by id ASC';
+var sql = 'select* from products where product_id ='+pid+'order by product_id ASC';
 db.any(sql)
 .then(function(data){
     console.log('DATA:'+data);
@@ -49,9 +49,9 @@ db.any(sql)
 //Display all products
 app.get('/products', function(req, res) {
     var id = req.param('id');
-    var sql='select* from products order by id ASC';
+    var sql='select* from products order by product_id ASC';
         if(id){
-            sql += ' where id ='+id+'order by id ASC';
+            sql += ' where product_id ='+id+'order by product_id ASC';
         }
    db.any(sql)
     .then(function(data){
@@ -156,7 +156,7 @@ var id =req.body.id;
 var title =req.body.title;
 var price =req.body.price;
 var time =req.body.time;
-var sql=`update products set title='${title}',price='${price}',time='${time}' where id='${id}'`;
+var sql=`update products set title='${title}',price='${price}',time='${time}' where product_id='${id}'`;
 // res.send(sql)
 //db.none
 db.any(sql)
@@ -195,7 +195,7 @@ app.get('/product_delete/:pid',function (req, res) {
     var id = req.params.pid;
     var sql = 'DELETE FROM products';
     if (id){
-            sql += ' where id ='+ id;
+            sql += ' where product_id ='+ id;
     }
     db.any(sql)
         .then(function(data){
@@ -221,7 +221,7 @@ app.post('/products/insert', function (req, res) {
     var title = req.body.title;
     var time = req.body.time
     var price = req.body.price;
-    var sql = `INSERT INTO products (id,title,price,created_at)
+    var sql = `INSERT INTO products (product_id,title,price,created_at)
     VALUES ('${id}', '${title}', '${price}','${time}')`;
     //db.none
     
@@ -240,20 +240,18 @@ app.post('/products/insert', function (req, res) {
 });
 //report product
 app.get('/report_products', function(req, res){
-
     var sql ='select products.product_id,products.title,sum(purchase_items.quantity) as quantity,sum(purchase_items.price) as price from products inner join purchase_items on purchase_items.product_id=products.product_id group by products.product_id;select sum(quantity) as squantity,sum(price) as sprice from purchase_items';
     db.multi(sql)
     .then(function  (data) 
     {
  
         // console.log('DATA' + data);
-        res.render('pages/Report_product', { product: data[0],sum: data[1]});
+        res.render('pages/report_products', { product: data[0],sum: data[1]});
     })
     .catch(function (data) 
     {
         console.log('ERROR' + error);
     })
-
 
 });
 
