@@ -90,6 +90,8 @@ app.get('/users/:id', function(req, res) {
     .catch(function(error){
         console.log('ERROR:'+error)
     })});
+
+
     // Display all user
     app.get('/users', function (req, res) {
         db.any('select * from users', )
@@ -139,7 +141,7 @@ app.get('/user_delete/:pid',function (req, res) {
     db.any(sql)
         .then(function(data){
             console.log('DATA:'+data);
-            res.render('pages/users',{products : data});
+            res.render('pages/users',{users : data});
             
         })
         .catch(function(data){
