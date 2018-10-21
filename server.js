@@ -79,7 +79,7 @@ app.get('/users/:id', function(req, res) {
     var time = moment().format();
     var sql = 'select * from users';
     if(id){
-        sql+=' where id ='+id;
+        sql+=' where user_id ='+id;
     }
     db.any(sql)
     .then(function(data){
@@ -136,7 +136,7 @@ app.get('/user_delete/:pid',function (req, res) {
     var id = req.params.pid;
     var sql = 'DELETE FROM users';
     if (id){
-            sql += ' where id ='+ id;
+            sql += ' where user_id ='+ id;
     }
     db.any(sql)
         .then(function(data){
@@ -156,7 +156,7 @@ var id =req.body.id;
 var title =req.body.title;
 var price =req.body.price;
 var time =req.body.time;
-var sql=`update products set title='${title}',price='${price}',time='${time}' where product_id='${id}'`;
+var sql=`update products set title='${title}',price='${price}',created_at='${time}' where product_id='${id}'`;
 // res.send(sql)
 //db.none
 db.any(sql)
@@ -176,7 +176,7 @@ app.post('/users/update',function (req, res) {
     var email =req.body.email;
     var password =req.body.password;
     var time =req.body.time;
-    var sql=`update users set email='${email}',password='${password}',created_at='${time}' where id='${id}'`;
+    var sql=`update users set email='${email}',password='${password}',created_at='${time}' where user_id='${id}'`;
     // res.send(sql)
     //db.none
     db.any(sql)
@@ -246,7 +246,7 @@ app.get('/report_products', function(req, res){
     {
  
         // console.log('DATA' + data);
-        res.render('pages/report_products', { product: data[0],sum: data[1]});
+        res.render('pages/report_products', { products: data[0],sum: data[1]});
     })
     .catch(function (data) 
     {
@@ -254,6 +254,20 @@ app.get('/report_products', function(req, res){
     })
 
 });
+app.get('/report_users', function(req, res) {
+    var sql='select users.email,purchases.name,products.title,purchase_items.quantity,purchase_items.price*purchase_items.quantity as tatol FROM users INNER JOIN purchases ON purchases.user_id = users.user_id INNER JOIN purchase_items ON purchase_items.purchase_id=purchases.purchase_id   INNER JOIN products ON products.product_id = purchase_items.product_id'
+    db.any(sql)
+        .then(function (data) 
+        {
+            console.log('DATA' + data);
+            res.render('pages/reprot_users', {users:data});
+        })
+        .catch(function (data) 
+        {
+            console.log('ERROR' + error);
+        })
+});
+
 
 
 // console.log('app is running at http://localhost:8080');
