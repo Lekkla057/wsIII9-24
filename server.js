@@ -130,16 +130,16 @@ app.post('/users/user_add', function (req, res) {
         
 });
 //delete user
-app.get('/product_delete/:pid',function (req, res) {
+app.get('/user_delete/:pid',function (req, res) {
     var id = req.params.pid;
-    var sql = 'DELETE FROM products';
+    var sql = 'DELETE FROM users';
     if (id){
             sql += ' where id ='+ id;
     }
     db.any(sql)
         .then(function(data){
             console.log('DATA:'+data);
-            res.render('pages/products',{products : data});
+            res.render('pages/users',{products : data});
             
         })
         .catch(function(data){
