@@ -169,6 +169,26 @@ app.post('/products/insert', function (req, res) {
         .catch(function (error) {
             console.log('ERROR:' + error);
         })
+
+        
+});
+
+app.get('/report_products', function(req, res){
+
+    var sql = 'select * from products order by price DESC limit 10';
+   
+    db.any(sql)
+    .then(function(data){
+    console.log('DATA:'+data);
+    res.render('pages/report_products',{products : data})
+
+    })
+    .catch(function(error){
+        console.log('ERROR:'+error)
+    })
+
+
+
 });
 
 
