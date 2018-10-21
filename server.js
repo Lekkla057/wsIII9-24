@@ -84,7 +84,7 @@ app.get('/users/:id', function(req, res) {
     db.any(sql)
     .then(function(data){
     console.log('DATA:'+data);
-    res.render('pages/user_edit',{ users: data,time:time})
+    res.render('pages/user_edit',{ user: data[0],time:time})
 
     })
     .catch(function(error){
@@ -184,7 +184,7 @@ app.post('/users/update',function (req, res) {
     db.any(sql)
             .then(function (data) {
                 console.log('DATA:' + data);
-                res.redirect('/products')
+                res.redirect('/users')
             })
     
             .catch(function (error) {
@@ -257,7 +257,7 @@ app.get('/report_products', function(req, res){
 
 });
 app.get('/report_users', function(req, res) {
-    var sql='select users.email,purchases.name,products.title,purchase_items.quantity,purchase_items.price*purchase_items.quantity as tatol FROM users INNER JOIN purchases ON purchases.user_id = users.user_id INNER JOIN purchase_items ON purchase_items.purchase_id=purchases.purchase_id   INNER JOIN products ON products.product_id = purchase_items.product_id'
+    var sql='select users.email,purchases.name,products.title,purchase_items.quantity,purchase_items.price*purchase_items.quantity as tatol FROM users INNER JOIN purchases ON purchases.user_id = users.user_id INNER JOIN purchase_items ON purchase_items.purchase_id=purchases.purchase_id   INNER JOIN products ON products.product_id = purchase_items.product_id order by purchase_items.price*purchase_items.quantity DESC limit 25'
     db.any(sql)
         .then(function (data) 
         {
