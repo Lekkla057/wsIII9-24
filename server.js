@@ -221,8 +221,8 @@ app.post('/products/insert', function (req, res) {
     var title = req.body.title;
     var time = req.body.time
     var price = req.body.price;
-    var sql = `INSERT INTO products 
-    VALUES ( '${title}', '${price}','${time}')`;
+    var sql = `INSERT INTO products (id,title,price,created_at)
+    VALUES ('${id}', '${title}', '${price}','${time}')`;
     //db.none
     
 
@@ -241,18 +241,18 @@ app.post('/products/insert', function (req, res) {
 //report product
 app.get('/report_products', function(req, res){
 
-    var sql = 'select * from products order by price DESC limit 10';
-   
-    db.any(sql)
-    .then(function(data){
-    console.log('DATA:'+data);
-    res.render('pages/report_products',{products : data})
-
+    var sql ='select products.product_id,products.title,sum(purchase_items.quantity) as quantity,sum(purchase_items.price) as price from products inner join purchase_items on purchase_items.product_id=products.product_id group by products.product_id;select sum(quantity) as squantity,sum(price) as sprice from purchase_items';
+    db.multi(sql)
+    .then(function  (data) 
+    {
+ 
+        // console.log('DATA' + data);
+        res.render('pages/Report_product', { product: data[0],sum: data[1]});
     })
-    .catch(function(error){
-        console.log('ERROR:'+error)
+    .catch(function (data) 
+    {
+        console.log('ERROR' + error);
     })
-
 
 
 });
