@@ -77,14 +77,14 @@ app.get('/products', function(req, res) {
 app.get('/users/:id', function(req, res) {
     var id=req.param('id');
     var time = moment().format();
-    var sql = 'select * from users';
+    var sql = 'select * from users ';
     if(id){
         sql+=' where user_id ='+id;
     }
     db.any(sql)
     .then(function(data){
     console.log('DATA:'+data);
-    res.render('pages/user_edit',{users : data,time:time})
+    res.render('pages/user_edit',{ users: data,time:time})
 
     })
     .catch(function(error){
@@ -116,9 +116,11 @@ app.post('/users/user_add', function (req, res) {
     var id = req.body.id;
     var email = req.body.email;
     var password = req.body.password;
-    var sql = `INSERT INTO users 
-    VALUES ( '${id}', '${email}','${password}')`;
+    var time = req.body.time
+    var sql = `INSERT INTO users (user_id,email,password,created_at)
+    VALUES ('${id}', '${email}', '${password}','${time}')`
     //db.none
+    
     db.any(sql)
         .then(function (data) {
             console.log('DATA:' + data);
