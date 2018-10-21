@@ -141,7 +141,7 @@ app.get('/user_delete/:pid',function (req, res) {
     db.any(sql)
         .then(function(data){
             console.log('DATA:'+data);
-            res.render('pages/users',{users : data});
+            res.redirect('/users');
             
         })
         .catch(function(data){
@@ -200,7 +200,7 @@ app.get('/product_delete/:pid',function (req, res) {
     db.any(sql)
         .then(function(data){
             console.log('DATA:'+data);
-            res.render('pages/products',{products : data});
+            res.redirect('/products');
             
         })
         .catch(function(data){
