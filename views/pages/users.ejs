@@ -9,7 +9,7 @@
             <th>E-mail</th>
             <th>Password</th>
             <th>E-dit</th>
-            <th>DELETE</th>
+  
             <th><a  class="btn btn-success" href="/user_add" role="button">New User</a></th>
         </tr>
     </thead>
@@ -21,7 +21,7 @@
             <td><%= user.password %></td>
             <td><a name="" id="" class="btn btn-warning" href="/users/<%= user.user_id %>" role="button">Edit</a></td>
             
-            <td><a name="btnConfirm" value="Confirm"  class="btn btn-danger" href="/user_delete/<%= user.user_id %>" onclick="return confirm('Are you sure you want to delete?')"role="button">DELETE</a></td>
+        
         </tr>
       <% }); %>
     </tbody>
@@ -37,7 +37,18 @@
       });
     });
     </script>
-
+<script>
+        var selectedUser = 0;
+        function deleteUser(id){
+            console.log(id);
+            selectedUser = id;
+            $('#exampleModalCenter').modal('show')
+        }
+        function confirmDelete(){
+            console.log('confirm:'+selectedUser);
+            window.location.href = '/user_delete/'+selectedUser;
+        }        
+    </script>
 
 
 

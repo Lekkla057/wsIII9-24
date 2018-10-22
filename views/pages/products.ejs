@@ -1,16 +1,16 @@
  <% include ../partials/header %>
 
 
+<div style="overflow-x:auto;">
 
-
-<table class="table">
+<table class="table ">
     <thead>
         <tr>
             <th>ID</th>
             <th>Tittle</th>
             <th>Price</th>
             <th>E-dit</th>
-            <th>DELETE</th>
+          
             <th><a name="" id="" class="btn btn-success" href="add" role="button">Add</a></th>
         </tr>
     </thead>
@@ -22,7 +22,7 @@
             <td><%=product.price %></td>
             
             <td><a name="" id="" class="btn btn-warning" href="products/<%=product.product_id %>" role="button">Edit</a></td>
-            <td><a name="" id="" class="btn btn-danger" href="product_delete/<%=product.product_id %>" onclick="return confirm('Are you sure you want to delete?')"role="button">Delete</a></td>
+          
         </tr>
       <% }); %>
     </tbody>
@@ -37,7 +37,18 @@ $(document).ready(function(){
   });
 });
 </script>
-
+<script>
+        var selectedUser = 0;
+        function deleteUser(id){
+            console.log(id);
+            selectedUser = id;
+            $('#exampleModalCenter').modal('show')
+        }
+        function confirmDelete(){
+            console.log('confirm:'+selectedUser);
+            window.location.href = '/product_delete/'+selectedUser;
+        }        
+    </script>
 
 
 

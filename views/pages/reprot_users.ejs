@@ -1,6 +1,6 @@
  <% include ../partials/header %>
 &nbsp;
-<h3 class="text-left">Report User Top 25</h3>
+<h2 class="text-left">Report User Top 25</h2>
 <table class="table">
     <thead>
         <tr>
@@ -23,6 +23,7 @@
         <% }); %>
     </tbody>
 </table>
+<canvas id="bar-chart" width="800" height="450"></canvas>
 <script>
 $(document).ready(function(){
   $("#myInput").on("keyup", function() {
@@ -32,5 +33,51 @@ $(document).ready(function(){
     });
   });
 });
+<%
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+ 
+var labelss=[]
+var data=[]
+var color=[]
+users.forEach(function(user) { 
+    var colors =getRandomColor()
+    labelss.push("'" + user.name + "'");
+    color.push("'" +colors + "'");
+    data.push(user.tatol);
+}); %>
+
+new Chart(document.getElementById("bar-chart"), {
+    type: 'bar',
+    data: {
+      labels:[<%-labelss%>], 
+      
+      datasets:[{
+          label: "Products",
+                backgroundColor: [<%-color%>],   
+          data:  [<%=data%>]
+        }]
+      
+     
+    },
+    options: {
+      legend: { display: false },
+      title: {
+        display: true,
+        text: 'Predicted world population (millions) in 2050'
+      }
+    }
+});
+
+
+
+
 </script>
   <% include ../partials/footer %>
