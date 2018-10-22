@@ -3,7 +3,7 @@
 <h2 class="text-left">Report User Top 25</h2>
 <table class="table">
     <thead>
-        <tr>
+        <tr class="text-white bg-warning">
             <th>Name</th>
             <th>Email</th>
             <th>title</th>
@@ -13,7 +13,7 @@
     </thead>
     <tbody id="myTable">
     <% users.forEach(function(user) { %>
-        <tr>
+        <tr class="text-white bg-secondary">
             <td scope="row"><%= user.name %></td>
             <td><%= user.email %></td>
             <td><%= user.title %></td>

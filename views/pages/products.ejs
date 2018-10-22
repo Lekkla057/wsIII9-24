@@ -5,18 +5,18 @@
 
 <table class="table ">
     <thead>
-        <tr>
+        <tr class="text-white bg-danger">
             <th>ID</th>
             <th>Tittle</th>
             <th>Price</th>
-            <th>E-dit</th>
+            
           
             <th><a name="" id="" class="btn btn-success" href="add" role="button">Add</a></th>
         </tr>
     </thead>
     <tbody id="myTable">
      <% products.forEach(function(product){ %>
-        <tr>
+        <tr class="text-white bg-info">
             <td scope="row"><%=product.product_id %></td>
             <td><%=product.title %></td>
             <td><%=product.price %></td>

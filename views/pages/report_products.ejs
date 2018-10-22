@@ -3,7 +3,7 @@
 <h2 class="text-left">Report Product</h2>
 <table class="table">
     <thead>
-        <tr>
+        <tr class="text-white bg-warning">
         <th>ITEM NAME</th>
         <th>QUANTITY PURCHASED</th>
         <th>AMOUNT</th>
@@ -11,7 +11,7 @@
     </thead>
     <tbody id="myTable">
     <% products.forEach(function(product) { %>
-        <tr>
+        <tr class="text-white bg-secondary">
             <td scope="row"><%= product.title %></font></td>
             <td><%= product.quantity %></font></td>
             <td>$<%= product.price %></font></td>

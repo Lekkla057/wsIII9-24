@@ -4,18 +4,18 @@
  <br>
 <table class="table">
     <thead>
-        <tr>
+        <tr class="text-white bg-danger">
             <th>ID</th>
             <th>E-mail</th>
             <th>Password</th>
-            <th>E-dit</th>
+            
   
             <th><a  class="btn btn-success" href="/user_add" role="button">New User</a></th>
         </tr>
     </thead>
     <tbody id="myTable">
      <% users.forEach(function(user){ %>
-        <tr>
+        <tr class="text-white bg-info">
             <td scope="row"><%= user.user_id %></td>
             <td><%= user.email %></td>
             <td><%= user.password %></td>
