@@ -1,6 +1,7 @@
  <% include ../partials/header %>
 &nbsp;
 <h2 class="text-left">Report Product</h2>
+<canvas id="bar-chart" width="800" height="450"></canvas>
 <table class="table">
     <thead>
         <tr class="text-white bg-warning">
@@ -26,7 +27,7 @@
         <% }); %>
     </tbody>
 </table>
-<canvas id="bar-chart" width="800" height="450"></canvas>
+
 <script>
 $(document).ready(function(){
   $("#myInput").on("keyup", function() {
