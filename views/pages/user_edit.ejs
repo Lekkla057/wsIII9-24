@@ -3,27 +3,29 @@
 <div class="form-group">
   <label for="">ID</label>
   <input  type="number"
-    class="form-control" name="id" id="" aria-describedby="helpId" placeholder=""value="<%= user.user_id %>">
-  <small id="helpId" class="form-text text-muted">Product ID</small>
+    class="form-control"  id="" aria-describedby="helpId" placeholder=""value="<%= user.user_id %>" disabled>
+    <input type="hidden" value="<%= user.user_id %>"id="custId" name="id" >
+  
   </div>
   <div class="form-group">
     <label for="email">Email</label>
     <input type="email"
       class="form-control" name="email" id="" aria-describedby="helpId" placeholder=""value="<%= user.email %>">
-    <small id="helpId" class="form-text text-muted">Title</small>
+    
   </div>
   <div class="form-group">
     <label for="password">Password</label>
     <input type="text"
       class="form-control" name="password" id="" aria-describedby="helpId" placeholder=""value="<%= user.password %>">
-    <small id="helpId" class="form-text text-muted">Price</small>
+    
     
 </div>
 <div class="form-group">
-  
-        <input type="text"
-          class="form-control" value="<%= time %>"name="time" id="" aria-describedby="helpId" placeholder="" >
-        <small id="helpId" class="form-text text-muted">Time</small>
+  <label for="email">Created At</label>
+         <input type="text"
+          class="form-control" value="<%= time %>" id="" aria-describedby="helpId" placeholder="" disabled>
+          <input type="hidden" value="<%= time %>"id="custId" name="time" >
+        
       </div>
       
  

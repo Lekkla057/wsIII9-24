@@ -94,7 +94,7 @@ app.get('/users/:id', function(req, res) {
 
     // Display all user
     app.get('/users', function (req, res) {
-        db.any('select * from users', )
+        db.any('select * from users order by user_id ASC', )
             .then(function (data) {
                 console.log('DATA' + data);
                 res.render('pages/users', { users: data })
@@ -113,12 +113,11 @@ app.get('/user_add', function(req, res) {
         
     });
 app.post('/users/user_add', function (req, res) {
-    var id = req.body.id;
+    
     var email = req.body.email;
     var password = req.body.password;
     var time = req.body.time
-    var sql = `INSERT INTO users (user_id,email,password,created_at)
-    VALUES ('${id}', '${email}', '${password}','${time}')`
+    var sql = `INSERT INTO "public"."users" (email,password,created_at) VALUES('${email}','${password}','${time}');`
     //db.none
     
     db.any(sql)
@@ -219,12 +218,11 @@ app.get('/add', function(req, res) {
         
     });
 app.post('/products/insert', function (req, res) {
-    var id = req.body.id;
+    
     var title = req.body.title;
     var time = req.body.time
     var price = req.body.price;
-    var sql = `INSERT INTO products (product_id,title,price,created_at)
-    VALUES ('${id}', '${title}', '${price}','${time}')`;
+    var sql = `INSERT INTO "public"."products" (title,price,created_at) VALUES('${title}','${price}','${time}');`;
     //db.none
     
 

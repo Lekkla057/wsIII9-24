@@ -3,27 +3,29 @@
 <div class="form-group">
   <label for="">ID</label>
   <input  type="number"
-    class="form-control" name="id" id="" aria-describedby="helpId" placeholder=""value="<%= product.product_id %>">
-  <small id="helpId" class="form-text text-muted">Product ID</small>
+    class="form-control" name="id" id="" aria-describedby="helpId" placeholder=""value="<%= product.product_id %>" disabled>
+    <input type="hidden" value="<%= product.product_id %>"id="custId" name="id" >
+  
   </div>
   <div class="form-group">
-    <label for="title"></label>
+    <label for="title">Title</label>
     <input type="text"
       class="form-control" name="title" id="" aria-describedby="helpId" placeholder=""value="<%= product.title %>">
-    <small id="helpId" class="form-text text-muted">Title</small>
+    
   </div>
   <div class="form-group">
-    <label for="Price"></label>
+    <label for="Price">Price</label>
     <input type="number"
       class="form-control" name="price" id="" aria-describedby="helpId" placeholder=""value="<%= product.price %>">
-    <small id="helpId" class="form-text text-muted">Price</small>
+    
     
 </div>
 <div class="form-group">
-  
+  <label for="">Created At</label>
         <input type="text"
-          class="form-control" value="<%= time %>"name="time" id="" aria-describedby="helpId" placeholder="" >
-        <small id="helpId" class="form-text text-muted">Time</small>
+          class="form-control" value="<%= time %>" id="" aria-describedby="helpId" placeholder="" disabled>
+          <input type="hidden" value="<%= time %>"id="custId" name="time" >
+        
       </div>
       
  
